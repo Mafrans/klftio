@@ -8,7 +8,7 @@ type ProjectProps = {
 
 export function Project({project}: ProjectProps) {
     const [rotation, setRotation] = useState<{x: number, y: number} | null>(null);
-    const ref = useRef<HTMLDivElement>();
+    const ref = useRef<HTMLDivElement>(null);
 
     function handleMouseMove(event: React.MouseEvent) {
         if(!ref.current) return;
@@ -18,7 +18,6 @@ export function Project({project}: ProjectProps) {
             y: (event.pageY - ref.current.offsetTop) / ref.current.offsetHeight
         }
 
-        console.log(uv);
         setRotation({
             x: -(uv.x - 0.5) * 15,
             y: (uv.y - 0.5) * 15
@@ -30,7 +29,7 @@ export function Project({project}: ProjectProps) {
             backgroundImage: `url(${project.image})`,
             transform: `perspective(2000px) rotateX(${rotation?.y ?? 0}deg) rotateY(${rotation?.x ?? 0}deg)`
         }}
-        ref={it => ref.current = it ?? undefined} 
+        ref={ref}
         onMouseMove={handleMouseMove} 
         onMouseOut={() =>setRotation({x:0,y:0})}
         className={styles.project} 
