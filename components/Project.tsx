@@ -24,7 +24,9 @@ export function Project({project}: ProjectProps) {
         })
     }
 
-    return <div 
+    return <div
+        tabIndex={0}
+        data-cursor={'pointer'}
         style={{
             backgroundImage: `url(${project.image})`,
             transform: `perspective(2000px) rotateX(${rotation?.y ?? 0}deg) rotateY(${rotation?.x ?? 0}deg)`

@@ -25,6 +25,10 @@
     margin-left: 2px;
 }
 
+.project:focus {
+    outline: none;
+}
+
 .project::after {
     content: '';
     inset: 0;
@@ -34,10 +38,13 @@
     transition: background-color 0.125s ease-out;
 }
 
+.project:focus::after,
 .project:hover::after {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+.project:focus h2,
+.project:focus p,
 .project:hover h2,
 .project:hover p {
     mix-blend-mode: normal;
