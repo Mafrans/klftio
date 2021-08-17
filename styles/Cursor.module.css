@@ -1,0 +1,16 @@
+.cursor {
+    width: .75rem;
+    height: .75rem;
+    border-radius: 999px;
+    background-color: black;
+    position: absolute;
+    z-index: 9999;
+    pointer-events: none;
+    transition: all 0.125s ease-out;
+}
+
+.cursor.pointer {
+    mix-blend-mode: difference;
+    width: 1.5rem;
+    height: 1.5rem;
+}

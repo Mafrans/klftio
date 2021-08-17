@@ -6,6 +6,7 @@ import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { Project } from '../components/Project';
 import { useEffect, useState } from 'react';
+import Cursor from "../components/Cursor";
 
 const Home: NextPage = () => {
     const [scroll, setScroll] = useState<number>(0);
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
 
     return <>
         <PageHead title='Home - Malte Klüft' />
+        <Cursor />
         <main>
             <section className={styles.hero}>
                 <h1>
