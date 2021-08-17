@@ -26,8 +26,8 @@ const Home: NextPage = () => {
                 <p>i make cool stuff, occasionally</p>
             </section>
             <section className={styles.projects}>
-                { model.projects.map(project => 
-                    <Project project={project} />
+                { model.projects.map((project, i) =>
+                    <Project key={i} project={project} />
                 ) }
             </section>
         </main>
