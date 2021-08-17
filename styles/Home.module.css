@@ -1,0 +1,29 @@
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Major Mono Display, monospace;
+}
+
+.hero h1 {
+    font-size: 100px;
+    font-weight: 300;
+    display: flex;
+}
+
+.hero h1 span {
+    margin-right: 4rem;
+    opacity: .25;
+}
+
+.hero p {
+    font-size: 48px;
+    margin-top: 4rem;
+}
+
+.projects {
+    display: grid;
+    gap: 3rem 2rem;
+    grid-template-columns: repeat(3, minmax(min-content, 1fr));
+}

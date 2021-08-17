@@ -1,0 +1,26 @@
+.project {
+    min-height: 480px;
+    padding: 2rem;
+    transition: transform 0.125s ease-out;
+}
+
+.project * {
+    margin: 0;
+}
+
+.project h2, .project p {
+    mix-blend-mode: difference;
+    color: #fff;
+}
+
+.project h2 {
+    font-family: Major Mono Display, monospace;
+    text-transform: lowercase;
+}
+
+.project p {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    margin-top: 10px;
+    margin-left: 2px;
+}
