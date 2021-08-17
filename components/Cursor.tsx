@@ -11,30 +11,49 @@ type CursorType = 'default' | 'pointer'
 function Cursor(props: CursorProps) {
     const [type, setType] = useState<CursorType>('default');
     const ref = useRef<HTMLDivElement>(null);
+    const lastScroll = useRef<number>(0);
     useEffect(() => {
         document.body.style.setProperty('cursor', 'none', 'important');
 
-        window.addEventListener('mousemove', event => {
+        function updateCursor(event: MouseEvent | Event) {
             if (ref.current) {
-                ref.current.style.left = event.pageX + 'px';
-                ref.current.style.top = event.pageY + 'px';
+                if (ref.current.hasAttribute('data-hidden-until-moved')) {
+                    ref.current.removeAttribute('data-hidden-until-moved');
+                }
+
+                const style = ref.current.style;
+                if (event instanceof MouseEvent) {
+                    style.left = Math.min(event.pageX, document.body.offsetWidth-ref.current.offsetWidth) + 'px';
+                    style.top = Math.min(event.pageY, document.body.offsetHeight-ref.current.offsetHeight) + 'px';
+                }
+                else {
+                    if (style.top) {
+                        style.top = parseInt(style.top.substring(-2)) + (window.pageYOffset - lastScroll.current) + 'px';
+                    }
+                    lastScroll.current = window.pageYOffset;
+                }
             }
 
-            if (event.target instanceof HTMLElement) {
-                setType(
-                    event.target.hasAttribute('data-cursor') ?
-                        event.target.getAttribute('data-cursor') as CursorType
-                        : 'default'
-                );
-            }
-        });
+            const target = event.composedPath().find(it =>
+                it instanceof HTMLElement && it.hasAttribute('data-cursor')
+            ) as HTMLElement;
+
+            setType(
+                target?.hasAttribute('data-cursor') ?
+                    target.getAttribute('data-cursor') as CursorType
+                    : 'default'
+            );
+        }
+
+        window.addEventListener('mousemove', updateCursor);
     }, []);
 
-    return <div
-        ref={ref}
-        className={classNames(styles.cursor, styles[type])}
-    >
-
+    return <div className={styles.cursorContainer}>
+        <div
+            data-hidden-until-moved={true}
+            ref={ref}
+            className={classNames(styles.cursor, styles[type])}
+        />
     </div>;
 }
 

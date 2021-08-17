@@ -9,8 +9,13 @@
     transition: all 0.125s ease-out;
 }
 
+.cursor[data-hidden-until-moved='true'] {
+    display: none;
+}
+
 .cursor.pointer {
     mix-blend-mode: difference;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #fff;
 }
