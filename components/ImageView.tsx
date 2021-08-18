@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Image from 'next/image';
 import classNames from 'classnames';
 import styles from '../styles/ImageView.module.css';
+import { MdClose } from 'react-icons/md';
 
 type ImageViewProps = {
     src: string;
@@ -22,5 +23,8 @@ export function ImageView(props: ImageViewProps) {
 
     return <div onClick={handleClickOutside} className={classNames(styles.imageView, props.visible && styles.visible)}>
         <img ref={ref} src={props.src} alt='Zoomed in Image Viewer'/>
+        <button data-cursor={'pointer'} className={styles.closeButton}>
+            <MdClose size={48} color='white' />
+        </button>
     </div>;
 }

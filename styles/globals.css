@@ -40,3 +40,9 @@ p {
     font-weight: 300;
     font-family: Poppins, sans-serif;
 }
+
+button {
+    padding: 0;
+    background: none;
+    border: none;
+}
