@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { PageHead } from '../components/PageHead'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/HomePage.module.css'
 import * as model from '../util/model';
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
@@ -8,7 +8,7 @@ import { Project } from '../components/Project';
 import { useEffect, useState } from 'react';
 import Cursor from "../components/Cursor";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
     const [scroll, setScroll] = useState<number>(0);
     useEffect(() => {
         window.addEventListener('scroll', event => {
@@ -36,4 +36,4 @@ const Home: NextPage = () => {
     </>
 }
 
-export default Home
+export default HomePage
