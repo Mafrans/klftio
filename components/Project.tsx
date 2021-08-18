@@ -1,55 +1,40 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link'
 import styles from '../styles/Project.module.css';
 import * as model from '../util/model';
 import { useRouter } from 'next/dist/client/router';
+import { RotatingPanel } from './RotatingPanel';
 
 type ProjectProps = {
     project: model.Project
 }
 
 export function Project({project}: ProjectProps) {
-    const [rotation, setRotation] = useState<{x: number, y: number} | null>(null);
-    const ref = useRef<HTMLDivElement>(null);
     const router = useRouter();
+    const ref = useRef<HTMLDivElement>(null);
     const slug = model.toSlug(project.name);
 
-    function handleMouseMove(event: React.MouseEvent) {
-        if(!ref.current) return;
-
-        const uv = {
-            x: (event.pageX - ref.current.offsetLeft) / ref.current.offsetWidth,
-            y: (event.pageY - ref.current.offsetTop) / ref.current.offsetHeight
-        }
-
-        setRotation({
-            x: -(uv.x - 0.5) * 15,
-            y: (uv.y - 0.5) * 15
-        })
-    }
-
     function handleKeyboardEnter(event: React.KeyboardEvent) {
+        console.log(event);
+        
         if (document.activeElement === ref.current && event.code === 'Enter') {
             router.push('/project/' + slug);
         }
     }
 
-    return <Link href={'/project/' + slug}>
+    return <RotatingPanel>
+        <Link href={'/project/' + slug}>
             <div 
                 data-cursor={'pointer-mix'}
-                style={{
-                    backgroundImage: `url(${project.image})`,
-                    transform: `perspective(2000px) rotateX(${rotation?.y ?? 0}deg) rotateY(${rotation?.x ?? 0}deg)`
-                }}
                 ref={ref}
-                onMouseMove={handleMouseMove} 
-                onMouseOut={() => setRotation({x:0,y:0})}
+                style={{ backgroundImage: `url(${project.image})` }}
                 className={styles.project} 
                 tabIndex={0}
                 onKeyUp={handleKeyboardEnter}
             >
-            <h3>{ project.name }</h3>
-            <p>{ project.summary }</p>
-        </div>
-    </Link>;
+                <h3>{ project.name }</h3>
+                <p>{ project.summary }</p>
+            </div>
+        </Link>
+    </RotatingPanel>
 }
