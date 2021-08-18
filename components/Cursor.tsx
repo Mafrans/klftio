@@ -33,12 +33,6 @@ function Cursor(props: CursorProps) {
                     style.left = Math.min(event.pageX, document.body.offsetWidth-ref.current.offsetWidth) + 'px';
                     style.top = Math.min(event.pageY, document.body.offsetHeight-ref.current.offsetHeight) + 'px';
                 }
-                else {
-                    if (style.top) {
-                        style.top = parseInt(style.top.substring(-2)) + (window.pageYOffset - lastScroll.current) + 'px';
-                    }
-                    lastScroll.current = window.pageYOffset;
-                }
             }
 
             const target = event.composedPath().find(it =>
