@@ -1,22 +1,29 @@
 import type { NextPage } from 'next'
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import * as model from '../../util/model';
 import { PageHead } from '../../components/PageHead';
+import Cursor from '../../components/Cursor';
+import { useEffect } from 'react';
 
 const ProjectPage: NextPage = () => {
     const router = useRouter();
     const { slug } = router.query;
 
     const project = getProject(slug as string);
-    if (!project) {
-        router.push('/404');
-        return null;
-    }
+
+    useEffect(() => {
+        if (!project) {
+            router.push('/404');
+        }
+    }, [project]);
+
+    if(!project) return null;
 
     return <>
         <PageHead title={`${project.name} - Malte Klüft`} />
+        <Cursor enabled={false} />
         <main>
             <section>
                 <h1>{project.name}</h1>
