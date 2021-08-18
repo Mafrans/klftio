@@ -13,13 +13,23 @@
     display: none;
 }
 
+.cursor.mix {
+    mix-blend-mode: difference;
+    background-color: #fff;
+    color: #fff;
+}
+
 .cursor.pointer {
     transform: scale(3.5);
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.cursor.pointer-mix {
-    mix-blend-mode: difference;
-    transform: scale(3.5);
-    background-color: #fff;
+.cursor.show {
+    background-color: transparent;
+    transform: scale(3.5) translate(-20%, -20%);
+    transition: transform 0.125s ease-out;
+}
+
+.cursor.show.mix {
+    background-color: transparent;
 }

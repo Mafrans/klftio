@@ -1,4 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
+import { MdVisibility } from 'react-icons/md';
+import Image from 'next/image';
 import styles from '../styles/Cursor.module.css';
 import classNames from "classnames";
 
@@ -6,17 +8,22 @@ type CursorProps = {
     enabled: boolean
 }
 
-type CursorType = 'default' | 'pointer' | 'pointer-mix'
+type CursorType = 'default' | 'pointer' | 'show';
+type CursorStyle = 'default' | 'mix';
+type CursorData = {
+    type: CursorType,
+    style: CursorStyle
+}
 
 function Cursor(props: CursorProps) {
-    const [type, setType] = useState<CursorType>('default');
+    const [cursorData, setCursorData] = useState<CursorData>({ type: 'default', style: 'default' });
     const ref = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
         if (props.enabled)
             document.styleSheets[0].addRule('*', 'cursor: none !important');
         else
-            document.body.style.setProperty('cursor', '');
+            document.styleSheets[0].removeRule(0);
     }, [props.enabled])
 
     useEffect(() => {
@@ -38,11 +45,18 @@ function Cursor(props: CursorProps) {
                 it instanceof HTMLElement && it.hasAttribute('data-cursor')
             ) as HTMLElement;
 
-            setType(
-                target?.hasAttribute('data-cursor') ?
-                    target.getAttribute('data-cursor') as CursorType
-                    : 'default'
-            );
+            if (target?.hasAttribute('data-cursor')) {
+                const value = target.getAttribute('data-cursor');
+                const splitData = value?.split('@');
+
+                const type = (splitData?.[0] as CursorType) ?? 'default';
+                const style = (splitData?.[1] as CursorStyle) ?? 'default';
+
+                setCursorData({ type, style });
+            }
+            else {
+                setCursorData({ type: 'default', style: 'default' });
+            }
         }
 
         window.addEventListener('mousemove', updateCursor);
@@ -52,8 +66,10 @@ function Cursor(props: CursorProps) {
         <div
             data-hidden-until-moved={true}
             ref={ref}
-            className={classNames(styles.cursor, styles[type])}
-        />
+            className={classNames(styles.cursor, styles[cursorData.type], styles[cursorData.style])}
+        >
+            { cursorData.type === 'show' ? <MdVisibility /> : null}
+        </div>
     </div> : null;
 }
 

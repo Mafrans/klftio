@@ -25,7 +25,7 @@ export function Project({project}: ProjectProps) {
     return <RotatingPanel>
         <Link href={'/project/' + slug}>
             <div 
-                data-cursor={'pointer-mix'}
+                data-cursor={'pointer@mix'}
                 ref={ref}
                 style={{ backgroundImage: `url(${project.image})` }}
                 className={styles.project} 

@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { useRouter } from 'next/router';
@@ -9,6 +8,7 @@ import Cursor from '../../components/Cursor';
 import { useEffect } from 'react';
 import styles from '../../styles/ProjectPage.module.css';
 import Link from 'next/link';
+import { RotatingPanel } from '../../components/RotatingPanel';
 
 const ProjectPage: NextPage = () => {
     const router = useRouter();
@@ -46,6 +46,16 @@ const ProjectPage: NextPage = () => {
                 <h2>{project.summary}</h2>
                 <p>{project.description}</p>
                 <img src={project.image} alt="Thumbnail" />
+            </section>
+            <section className={styles.gallery}>
+                { project.gallery.map(item => 
+                    <RotatingPanel>
+                        <div data-cursor='show@mix' className={styles.galleryItem} style={{backgroundImage: `url(${item.image})`}}>
+                            <h3>{item.name}</h3>
+                            <p>{item.summary}</p>
+                        </div>
+                    </RotatingPanel>
+                ) }
             </section>
         </main>
     </>
