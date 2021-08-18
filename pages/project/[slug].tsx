@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Image from 'next/image'
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { useRouter } from 'next/router';
@@ -7,6 +8,7 @@ import { PageHead } from '../../components/PageHead';
 import Cursor from '../../components/Cursor';
 import { useEffect } from 'react';
 import styles from '../../styles/ProjectPage.module.css';
+import Link from 'next/link';
 
 const ProjectPage: NextPage = () => {
     const router = useRouter();
@@ -28,6 +30,11 @@ const ProjectPage: NextPage = () => {
         <Cursor enabled={false} />
         <main>
             <section className={styles.hero}>
+                <button className={styles.backButton}>
+                    <Link href='/'>
+                        <h3>↩ back</h3>
+                    </Link>
+                </button>
                 <h1>
                     <span>
                         {'>'}<br/>
