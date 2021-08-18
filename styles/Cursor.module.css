@@ -6,7 +6,7 @@
     position: absolute;
     z-index: 9999;
     pointer-events: none;
-    transition: all 0.125s ease-out;
+    transition: transform 0.125s ease-out;
 }
 
 .cursor[data-hidden-until-moved='true'] {
@@ -17,14 +17,15 @@
     mix-blend-mode: difference;
     background-color: #fff;
     color: #fff;
+    transition: transform 0.125s ease-out;
 }
 
-.cursor.pointer {
+.cursor:where(.pointer) {
     transform: scale(3.5);
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.cursor.show {
+.cursor:where(.show) {
     background-color: transparent;
     transform: scale(3.5) translate(-20%, -20%);
     transition: transform 0.125s ease-out;
