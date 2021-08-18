@@ -36,7 +36,7 @@ export function Project({project}: ProjectProps) {
 
     return <Link href={'/project/' + slug}>
             <div 
-                data-cursor={'pointer'}
+                data-cursor={'pointer-mix'}
                 style={{
                     backgroundImage: `url(${project.image})`,
                     transform: `perspective(2000px) rotateX(${rotation?.y ?? 0}deg) rotateY(${rotation?.x ?? 0}deg)`

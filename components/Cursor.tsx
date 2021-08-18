@@ -6,16 +6,15 @@ type CursorProps = {
     enabled: boolean
 }
 
-type CursorType = 'default' | 'pointer'
+type CursorType = 'default' | 'pointer' | 'pointer-mix'
 
 function Cursor(props: CursorProps) {
     const [type, setType] = useState<CursorType>('default');
     const ref = useRef<HTMLDivElement>(null);
-    const lastScroll = useRef<number>(0);
     
     useEffect(() => {
         if (props.enabled)
-            document.body.style.setProperty('cursor', 'none', 'important');
+            document.styleSheets[0].addRule('*', 'cursor: none !important');
         else
             document.body.style.setProperty('cursor', '');
     }, [props.enabled])

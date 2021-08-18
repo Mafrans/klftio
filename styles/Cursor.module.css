@@ -14,8 +14,12 @@
 }
 
 .cursor.pointer {
+    transform: scale(3.5);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.cursor.pointer-mix {
     mix-blend-mode: difference;
-    width: 2.5rem;
-    height: 2.5rem;
+    transform: scale(3.5);
     background-color: #fff;
 }
