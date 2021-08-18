@@ -5,12 +5,16 @@ import { useRouter } from 'next/router';
 import * as model from '../../util/model';
 import { PageHead } from '../../components/PageHead';
 import Cursor from '../../components/Cursor';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from '../../styles/ProjectPage.module.css';
 import Link from 'next/link';
 import { RotatingPanel } from '../../components/RotatingPanel';
+import { ImageView } from '../../components/ImageView';
+import { GalleryItem } from '../../components/GalleryItem';
+import { useState } from 'react';
 
 const ProjectPage: NextPage = () => {
+    const [expandedItem, setExpandedItem] = useState<model.GalleryItem>();
     const router = useRouter();
     const { slug } = router.query;
 
@@ -49,13 +53,14 @@ const ProjectPage: NextPage = () => {
             </section>
             <section className={styles.gallery}>
                 { project.gallery.map(item => 
-                    <RotatingPanel>
-                        <div data-cursor='show@mix' className={styles.galleryItem} style={{backgroundImage: `url(${item.image})`}}>
-                            <h3>{item.name}</h3>
-                            <p>{item.summary}</p>
-                        </div>
-                    </RotatingPanel>
+                    <GalleryItem item={item} onClick={() => setExpandedItem(item)} /> 
                 ) }
+                
+                <ImageView 
+                    src={expandedItem?.image ?? ''} 
+                    visible={expandedItem !== undefined}
+                    onClose={() => setExpandedItem(undefined)} 
+                />
             </section>
         </main>
     </>
