@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styles from '../styles/Project.module.css';
-import * as model from '../public/model';
+import * as model from '../util/model';
 
 type ProjectProps = {
     project: model.Project
