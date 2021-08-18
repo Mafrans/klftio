@@ -1,4 +1,4 @@
-export type GalleryItem {
+export type GalleryItem = {
     name?: string;
     summary?: string;
     image: string;
