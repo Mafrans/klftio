@@ -48,7 +48,7 @@ export function Project({project}: ProjectProps) {
                 tabIndex={0}
                 onKeyUp={handleKeyboardEnter}
             >
-            <h2>{ project.name }</h2>
+            <h3>{ project.name }</h3>
             <p>{ project.summary }</p>
         </div>
     </Link>;

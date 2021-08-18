@@ -8,19 +8,16 @@
     margin: 0;
 }
 
-.project h2, .project p {
+.project h3, .project p {
     mix-blend-mode: difference;
     color: #fff;
 }
 
-.project h2 {
-    font-family: Major Mono Display, monospace;
+.project h3 {
     text-transform: lowercase;
 }
 
 .project p {
-    font-family: Poppins, sans-serif;
-    font-weight: 300;
     margin-top: 10px;
     margin-left: 2px;
 }
@@ -43,9 +40,9 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-.project:focus h2,
+.project:focus h3,
 .project:focus p,
-.project:hover h2,
+.project:hover h3,
 .project:hover p {
     mix-blend-mode: normal;
     color: #000;

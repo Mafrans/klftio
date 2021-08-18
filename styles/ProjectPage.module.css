@@ -1,0 +1,47 @@
+.hero {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 
+        "name        image"
+        "summary     image"
+        "description image";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    gap: 0 8rem;
+}
+
+.hero h1 {
+    display: flex;
+    align-self: end;
+    grid-area: name;
+    text-transform: lowercase;
+}
+
+.hero h1 span {
+    opacity: 0.3;
+}
+
+.hero h1 span:first-child {
+    margin-right: 4rem;
+}
+
+.hero h1 span:last-child {
+    margin-left: 4rem;
+}
+
+.hero h2 {
+    grid-area: summary;
+    text-transform: lowercase;
+}
+
+.hero p {
+    font-size: 120%;
+    grid-area: description;
+}
+
+.hero img {
+    height: 100%;
+    width: 100%;
+    grid-area: image;
+    object-fit: cover;
+}
