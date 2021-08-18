@@ -6,6 +6,8 @@
     position: absolute;
     z-index: 9999;
     pointer-events: none;
+    transform-origin: 0 0;
+    transform: translate(-50%, -50%);
     transition: transform 0.125s ease-out;
 }
 
@@ -21,13 +23,13 @@
 }
 
 .cursor:where(.pointer) {
-    transform: scale(3.5);
+    transform: scale(3.5) translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
 }
 
 .cursor:where(.show) {
     background-color: transparent;
-    transform: scale(3.5) translate(-20%, -20%);
+    transform: scale(3.5) translate(-50%, -50%);
     transition: transform 0.125s ease-out;
 }
 

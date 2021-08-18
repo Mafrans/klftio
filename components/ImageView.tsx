@@ -4,6 +4,7 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import styles from '../styles/ImageView.module.css';
 import { MdClose } from 'react-icons/md';
+import { useEffect } from 'react';
 
 type ImageViewProps = {
     src: string;
@@ -14,9 +15,16 @@ type ImageViewProps = {
 export function ImageView(props: ImageViewProps) {
     const ref = useRef<HTMLImageElement>(null);
 
+    useEffect(() => {
+        window.addEventListener('keyup', event => {
+            if (props.visible && event.code === 'Escape') {
+                props.onClose();
+            }
+        });
+    }, [props.visible]);
+
     function handleClickOutside(event: React.MouseEvent) {
         if(!ref.current?.contains(event.target as Node)) {
-            console.log('close');
             props.onClose();
         }
     }
