@@ -18,3 +18,16 @@ a {
 section {
     padding: 0 4rem;
 }
+
+h1 {
+    font-size: 100px;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+p {
+    font-size: 18px;
+}

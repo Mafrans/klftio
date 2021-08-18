@@ -25,7 +25,7 @@ const Home: NextPage = () => {
                     <span>$<br/>|</span>
                     Hello<br/>i am malte
                 </h1>
-                <p>i make cool stuff, occasionally</p>
+                <h2>i make cool stuff, occasionally</h2>
             </section>
             <section className={styles.projects}>
                 { model.projects.map((project, i) =>
