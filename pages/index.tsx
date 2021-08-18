@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
     return <>
         <PageHead title='Home - Malte Klüft' />
-        <Cursor />
+        <Cursor enabled={true} />
         <main>
             <section className={styles.hero}>
                 <h1>

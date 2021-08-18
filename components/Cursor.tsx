@@ -3,7 +3,7 @@ import styles from '../styles/Cursor.module.css';
 import classNames from "classnames";
 
 type CursorProps = {
-
+    enabled: boolean
 }
 
 type CursorType = 'default' | 'pointer'
@@ -12,8 +12,15 @@ function Cursor(props: CursorProps) {
     const [type, setType] = useState<CursorType>('default');
     const ref = useRef<HTMLDivElement>(null);
     const lastScroll = useRef<number>(0);
+    
     useEffect(() => {
-        document.body.style.setProperty('cursor', 'none', 'important');
+        if (props.enabled)
+            document.body.style.setProperty('cursor', 'none', 'important');
+        else
+            document.body.style.setProperty('cursor', '');
+    }, [props.enabled])
+
+    useEffect(() => {
 
         function updateCursor(event: MouseEvent | Event) {
             if (ref.current) {
@@ -48,13 +55,13 @@ function Cursor(props: CursorProps) {
         window.addEventListener('mousemove', updateCursor);
     }, []);
 
-    return <div className={styles.cursorContainer}>
+    return props.enabled ? <div className={styles.cursorContainer}>
         <div
             data-hidden-until-moved={true}
             ref={ref}
             className={classNames(styles.cursor, styles[type])}
         />
-    </div>;
+    </div> : null;
 }
 
 export default Cursor;
