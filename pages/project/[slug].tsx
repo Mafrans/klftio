@@ -27,14 +27,14 @@ const ProjectPage: NextPage = () => {
 
     return <>
         <PageHead title={`${project.name} - Malte Klüft`} />
-        <Cursor enabled={false} />
+        <Cursor enabled={true} />
         <main>
             <section className={styles.hero}>
-                <button className={styles.backButton}>
-                    <Link href='/'>
+                <Link href='/'>
+                    <button data-cursor='pointer' className={styles.backButton}>
                         <h3>↩ back</h3>
-                    </Link>
-                </button>
+                    </button>
+                </Link>
                 <h1>
                     <span>
                         {'>'}<br/>
