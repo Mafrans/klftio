@@ -56,3 +56,15 @@
     grid-area: image;
     object-fit: cover;
 }
+
+.gallery {
+    margin-top: 8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4rem;
+}
+
+.galleryItem {
+    min-height: 600px;
+    background-position: center;
+}
