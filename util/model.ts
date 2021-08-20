@@ -1,3 +1,7 @@
+export type BlogPost = {
+
+}
+
 export type GalleryItem = {
     name?: string;
     summary?: string;
@@ -11,6 +15,10 @@ export type Project = {
     image: string;
     gallery: GalleryItem[];
 }
+
+export const blogPosts: BlogPost[] = [
+
+];
 
 export const projects: Project[] = [
     {
