@@ -36,4 +36,4 @@ const BlogPage: NextPage = () => {
     </>
 }
 
-export default HomePage
+export default BlogPage
