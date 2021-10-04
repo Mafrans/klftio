@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { useRouter } from 'next/router';
-import * as model from '../../util/model';
+import * as model from '../../util/api';
 import { PageHead } from '../../components/PageHead';
 import Cursor from '../../components/Cursor';
 import React, { useEffect } from 'react';
@@ -52,8 +52,8 @@ const ProjectPage: NextPage = () => {
                 <img src={project.image} alt="Thumbnail" />
             </section>
             <section className={styles.gallery}>
-                { project.gallery.map(item => 
-                    <GalleryItem item={item} onClick={() => setExpandedItem(item)} /> 
+                { project.gallery.map((item, i) => 
+                    <GalleryItem key={i} item={item} onClick={() => setExpandedItem(item)} /> 
                 ) }
                 
                 <ImageView 

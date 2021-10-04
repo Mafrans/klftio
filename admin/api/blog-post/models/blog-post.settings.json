@@ -12,19 +12,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Slug": {
+    "slug": {
       "type": "uid",
       "required": true
     },
-    "Title": {
+    "title": {
       "type": "string",
       "required": true,
       "maxLength": 64
     },
-    "Content": {
+    "content": {
       "type": "richtext"
     },
-    "Gallery": {
+    "gallery": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [

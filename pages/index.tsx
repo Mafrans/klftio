@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { PageHead } from '../components/PageHead'
 import styles from '../styles/HomePage.module.css'
-import * as model from '../util/model';
+import * as model from '../util/api';
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { Project } from '../components/Project';

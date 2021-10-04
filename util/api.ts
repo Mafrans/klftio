@@ -1,5 +1,20 @@
-export type BlogPost = {
+export async function apiFetch(path: string): Promise<unknown> {
+    const response = await fetch(`http://localhost:1337/${path}`);
+    if (response.status < 200 && response.status >= 300) {
+        throw new Error(`API returned status code ${response.status} - ${response.statusText}`);
+    }
 
+    return await response.json();
+}
+
+export type BlogPost = {
+    id: number;
+    slug: string;
+    title: string;
+    content: string;
+    published_at: string;
+    created_at: string;
+    updated_at: string;
 }
 
 export type GalleryItem = {

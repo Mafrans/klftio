@@ -1,14 +1,18 @@
 import type { NextPage } from 'next'
 import { PageHead } from '../components/PageHead'
 import styles from '../styles/HomePage.module.css'
-import * as model from '../util/model';
+import * as api from '../util/api';
 import '@fontsource/major-mono-display';
 import '@fontsource/poppins';
 import { Project } from '../components/Project';
 import { useEffect, useState } from 'react';
 import Cursor from "../components/Cursor";
 
-const BlogPage: NextPage = () => {
+type BlogPageProps = {
+    posts: api.BlogPost[]
+}
+
+const BlogPage: NextPage<BlogPageProps> = ({ posts }: BlogPageProps) => {
     const [scroll, setScroll] = useState<number>(0);
     useEffect(() => {
         window.addEventListener('scroll', event => {
@@ -17,7 +21,7 @@ const BlogPage: NextPage = () => {
     }, [])
 
     return <>
-        <PageHead title='Home - Malte Klüft' />
+        <PageHead title='Blog - Malte Klüft' />
         <Cursor enabled={true} />
         <main>
             <section className={styles.hero}>
@@ -28,12 +32,20 @@ const BlogPage: NextPage = () => {
                 <h2>i make cool stuff, occasionally</h2>
             </section>
             <section className={styles.projects}>
-                { model.projects.map((project, i) =>
+                { api.projects.map((project, i) =>
                     <Project key={i} project={project} />
                 ) }
             </section>
         </main>
     </>
+}
+
+export async function getStaticProps() {
+    return {
+        props: {
+            posts: await api.apiFetch('blog-posts'),
+        }
+    }
 }
 
 export default BlogPage

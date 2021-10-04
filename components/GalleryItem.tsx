@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import * as model from '../util/model';
+import * as model from '../util/api';
 import { RotatingPanel } from './RotatingPanel';
 import styles from '../styles/GalleryItem.module.css';
 import classNames from 'classnames';

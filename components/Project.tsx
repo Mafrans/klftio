@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Link from 'next/link'
 import styles from '../styles/Project.module.css';
-import * as model from '../util/model';
+import * as model from '../util/api';
 import { useRouter } from 'next/dist/client/router';
 import { RotatingPanel } from './RotatingPanel';
 
